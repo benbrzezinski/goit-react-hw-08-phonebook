@@ -1,0 +1,15 @@
+@use "src/utils/scss/mixins.scss" as *;
+
+.section {
+  padding: 50px;
+
+  @include max-width(400px) {
+    display: grid;
+    justify-content: center;
+    padding: 50px 0 0 0;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
