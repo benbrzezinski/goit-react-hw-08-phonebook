@@ -1,31 +1,42 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectIsLoading, selectError } from "../redux/selectors";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-import { toast } from "react-toastify";
-import Section from "./Section/Section";
-import Form from "./Form/Form";
-import Contacts from "./Contacts/Contacts";
-import Loader from "./Loader/Loader";
+import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+import PrivateRoute from "./PrivateRoute";
+import RestrictedRoute from "./RestrictedRoute";
+import SharedLayout from "./SharedLayout/SharedLayout";
+
+const HomePage = lazy(() => import("../pages/Home/Home"));
+const RegisterPage = lazy(() => import("../pages/Register"));
+const LoginPage = lazy(() => import("../pages/Login"));
+const ContactsPage = lazy(() => import("../pages/Contacts"));
 
 const App = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
-
   return (
-    <>
-      <Section>
-        <Form />
-        <Contacts />
-      </Section>
-      {isLoading && <Loader isLoading={isLoading} />}
-      <ToastContainer position="top-left" autoClose={3000} theme="colored" />
-    </>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              redirectTo="contacts"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute redirectTo="contacts" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute redirectTo="login" component={<ContactsPage />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 };
 

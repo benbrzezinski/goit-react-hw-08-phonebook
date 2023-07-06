@@ -2,7 +2,7 @@ import { ColorRing } from "react-loader-spinner";
 import PropTypes from "prop-types";
 import scss from "./Loader.module.scss";
 
-const Loader = ({ isLoading }) => (
+const Loader = ({ isLoading = true }) => (
   <ColorRing
     visible={isLoading}
     height="100"
@@ -14,7 +14,7 @@ const Loader = ({ isLoading }) => (
 );
 
 Loader.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
 };
 
 export default Loader;

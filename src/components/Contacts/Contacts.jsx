@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectContacts, selectIsLoading } from "../../redux/selectors";
-import { getContacts } from "../../redux/actions";
+import {
+  selectContacts,
+  selectIsLoading,
+} from "../../redux/contacts/selectors";
+import { getContacts } from "../../redux/contacts/actions";
 import Filter from "../Filter/Filter";
 import ContactsItem from "../ContactsItem/ContactsItem";
 import Notification from "../Notification/Notification";
@@ -17,7 +20,7 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <section>
       <h2 className={scss.title}>Contacts</h2>
       {contacts.length > 0 && (
         <>
@@ -28,7 +31,7 @@ const Contacts = () => {
         </>
       )}
       {!contacts.length && !isLoading && <Notification />}
-    </>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { selectFilteredContacts } from "../../redux/selectors";
-import { deleteContact } from "../../redux/actions";
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import { deleteContact } from "../../redux/contacts/actions";
 import scss from "./ContactsItem.module.scss";
 
 const ContactsItem = () => {
