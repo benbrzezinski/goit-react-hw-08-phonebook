@@ -1,20 +1,14 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContacts } from "../../redux/contacts/selectors";
 import { addContact } from "../../redux/contacts/actions";
 import { toast } from "react-toastify";
-import { nanoid } from "nanoid";
 import scss from "./AddContactForm.module.scss";
 
 const AddContactForm = () => {
   const [values, setValues] = useState({ name: "", number: "" });
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-
-  const id = useRef({
-    nameInput: nanoid(),
-    numberInput: nanoid(),
-  });
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -36,36 +30,34 @@ const AddContactForm = () => {
 
   return (
     <section className={scss.section}>
-      <h1 className={scss.title}>Phonebook</h1>
+      <h1 className={scss.formTitle}>Phonebook</h1>
       <form className={scss.form} onSubmit={handleSubmit}>
-        <label className={scss.label} htmlFor={id.current.nameInput}>
-          Name
+        <label className={scss.label}>
+          <span className={scss.inputName}>Name</span>
+          <input
+            className={scss.input}
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
         </label>
-        <input
-          className={scss.input}
-          id={id.current.nameInput}
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-        <label className={scss.label} htmlFor={id.current.numberInput}>
-          Number
+        <label className={scss.label}>
+          <span className={scss.inputName}>Number</span>
+          <input
+            className={scss.input}
+            type="tel"
+            name="number"
+            value={values.number}
+            onChange={handleChange}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
         </label>
-        <input
-          className={scss.input}
-          id={id.current.numberInput}
-          type="tel"
-          name="number"
-          value={values.number}
-          onChange={handleChange}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
         <button className={scss.btn} type="submit">
           Add contact
         </button>

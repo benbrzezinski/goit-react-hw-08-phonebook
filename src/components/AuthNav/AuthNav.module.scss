@@ -1,0 +1,13 @@
+@use "../../utils/scss/placeholders/nav.scss" as *;
+
+.authNavList {
+  @extend %navList;
+}
+
+.authNavLink {
+  @extend %navLink;
+}
+
+.isActive {
+  @extend %isActive;
+}

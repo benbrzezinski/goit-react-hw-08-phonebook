@@ -18,7 +18,7 @@ const SharedLayout = () => {
 
   return (
     <>
-      <header>
+      <header className={scss.header}>
         <NavigationBar />
       </header>
       <main>

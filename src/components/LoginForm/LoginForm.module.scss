@@ -1,9 +1,5 @@
 @use "../../utils//scss//placeholders//form.scss" as *;
 
-.section {
-  margin-bottom: 20px;
-}
-
 .formTitle {
   @extend %formTitle;
 }

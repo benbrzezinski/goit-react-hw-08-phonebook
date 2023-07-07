@@ -10,12 +10,12 @@ const NavigationBar = () => {
 
   return (
     <nav className={scss.nav}>
-      <ul className={scss.navList}>
+      <ul className={scss.mainNavList}>
         <li>
           <NavLink
             to="/"
             className={({ isActive }) =>
-              clsx(scss.navItem, { [scss.isActive]: isActive })
+              clsx(scss.mainNavLink, { [scss.isActive]: isActive })
             }
           >
             Home
@@ -26,7 +26,7 @@ const NavigationBar = () => {
             <NavLink
               to="contacts"
               className={({ isActive }) =>
-                clsx(scss.navItem, { [scss.isActive]: isActive })
+                clsx(scss.mainNavLink, { [scss.isActive]: isActive })
               }
             >
               Contacts

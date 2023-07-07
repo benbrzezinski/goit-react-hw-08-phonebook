@@ -1,0 +1,21 @@
+%navList {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+%navLink {
+  display: inline-block;
+  color: var(--color-text-main);
+  font-size: 20px;
+  transition: transform var(--duration) var(--timing-function);
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+  }
+}
+
+%isActive {
+  font-weight: 700;
+}
