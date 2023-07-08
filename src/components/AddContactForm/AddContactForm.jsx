@@ -31,7 +31,7 @@ const AddContactForm = () => {
   return (
     <section className={scss.section}>
       <h1 className={scss.formTitle}>Phonebook</h1>
-      <form className={scss.form} onSubmit={handleSubmit}>
+      <form className={scss.contactForm} onSubmit={handleSubmit}>
         <label className={scss.label}>
           <span className={scss.inputName}>Name</span>
           <input

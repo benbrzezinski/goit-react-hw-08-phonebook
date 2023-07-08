@@ -1,10 +1,14 @@
-@use "../../utils/scss/placeholders/nav.scss" as *;
+@use "../../utils/scss/index.scss" as *;
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-inline: 50px;
+
+  @include max-width(500px) {
+    padding-inline: 15px;
+  }
 }
 
 .mainNavList {
@@ -13,8 +17,4 @@
 
 .mainNavLink {
   @extend %navLink;
-}
-
-.isActive {
-  @extend %isActive;
 }

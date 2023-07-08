@@ -8,9 +8,9 @@ import { getContacts } from "../../redux/contacts/actions";
 import Filter from "../Filter/Filter";
 import ContactsItem from "../ContactsItem/ContactsItem";
 import Notification from "../Notification/Notification";
-import scss from "./Contacts.module.scss";
+import scss from "./ContactsList.module.scss";
 
-const Contacts = () => {
+const ContactsList = () => {
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
@@ -35,4 +35,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsList;

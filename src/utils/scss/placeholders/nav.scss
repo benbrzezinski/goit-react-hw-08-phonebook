@@ -14,8 +14,8 @@
   &:focus-visible {
     transform: translateY(-3px);
   }
-}
 
-%isActive {
-  font-weight: 700;
+  &.isActive {
+    font-weight: 700;
+  }
 }

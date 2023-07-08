@@ -4,7 +4,7 @@
   @extend %formTitle;
 }
 
-.form {
+.registerForm {
   @extend %form;
 }
 
@@ -22,4 +22,8 @@
 
 .btn {
   @extend %btn;
+}
+
+.formInfo {
+  @extend %formInfo;
 }

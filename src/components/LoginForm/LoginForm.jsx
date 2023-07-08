@@ -1,10 +1,25 @@
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/actions";
 import scss from "./LoginForm.module.scss";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+
+    dispatch(logIn({ email, password }));
+    form.reset();
+  };
+
   return (
     <section>
       <h1 className={scss.formTitle}>Sign In</h1>
-      <form className={scss.form}>
+      <form className={scss.loginForm} onSubmit={handleSubmit}>
         <label className={scss.label}>
           <span className={scss.inputName}>E-mail</span>
           <input
@@ -23,7 +38,7 @@ const LoginForm = () => {
             type="password"
             name="password"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-            title="Password must contain at least 8 characters, including one letter and one number"
+            title="Password must contains at least 8 characters, including one letter and one number"
             required
           />
         </label>
@@ -31,6 +46,10 @@ const LoginForm = () => {
           Login
         </button>
       </form>
+      <p className={scss.formInfo}>
+        * password must contains at least 8 <span>characters</span>, including
+        one letter and one <span>number</span>
+      </p>
     </section>
   );
 };
