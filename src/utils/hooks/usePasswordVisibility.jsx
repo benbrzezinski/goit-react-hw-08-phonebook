@@ -1,8 +1,8 @@
-import PropTypes from "prop-types";
 import { useState, useRef } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const usePasswordVisibility = (initialState = false) => {
   const [passwordVisibility, setPasswordVisibility] = useState(initialState);
