@@ -1,4 +1,4 @@
-@use "../../utils/scss/placeholders/nav.scss" as *;
+@use "../../utils/scss/index.scss" as *;
 
 .authNavList {
   @extend %navList;

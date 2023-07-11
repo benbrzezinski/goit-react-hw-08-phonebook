@@ -23,7 +23,8 @@ export const register = createAsyncThunk(
       setAuthHeader(resp.data.token);
       return await resp.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Registration failed ⚠");
     }
   }
 );
@@ -40,7 +41,8 @@ export const logIn = createAsyncThunk(
       setAuthHeader(resp.data.token);
       return await resp.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Login failed ⚠");
     }
   }
 );
@@ -54,7 +56,8 @@ export const logOut = createAsyncThunk("auth/logOut", async (_, thunkAPI) => {
     await axios.post("/users/logout");
     clearAuthHeader();
   } catch (err) {
-    return thunkAPI.rejectWithValue(err.message);
+    console.error(err.message);
+    return thunkAPI.rejectWithValue("Logout failed ⚠");
   }
 });
 
@@ -69,7 +72,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (!persistedToken) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+      return thunkAPI.rejectWithValue("Unable to fetch user ⚠");
     }
 
     try {
@@ -77,7 +80,8 @@ export const refreshUser = createAsyncThunk(
       const resp = await axios.get("/users/current");
       return await resp.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("User refresh failed ⚠");
     }
   }
 );

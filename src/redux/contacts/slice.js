@@ -1,42 +1,51 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getContacts, addContact, deleteContact } from "./actions";
 
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
+
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: {
-    items: [],
-    isLoading: true,
-    error: null,
-  },
+  initialState,
   extraReducers: builder => {
     builder
-      .addCase(getContacts.fulfilled, (state, { payload }) => {
-        state.items = payload;
-        state.isLoading = false;
-        state.error = null;
+      .addCase(getContacts.fulfilled, (state, action) => {
+        state.items = action.payload;
       })
-      .addCase(addContact.fulfilled, (state, { payload }) => {
-        state.items.unshift(payload);
-        state.isLoading = false;
-        state.error = null;
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.items.unshift(action.payload);
       })
-      .addCase(deleteContact.fulfilled, (state, { payload }) => {
-        const i = state.items.findIndex(({ id }) => id === payload.id);
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        const i = state.items.findIndex(({ id }) => id === action.payload.id);
         state.items.splice(i, 1);
-        state.isLoading = false;
-        state.error = null;
       })
       .addMatcher(
-        action => action.type.endsWith("/pending"),
+        action =>
+          action.type.startsWith("contacts") &&
+          action.type.endsWith("/pending"),
         state => {
           state.isLoading = true;
         }
       )
       .addMatcher(
-        action => action.type.endsWith("/rejected"),
-        (state, { payload }) => {
+        action =>
+          action.type.startsWith("contacts") &&
+          action.type.endsWith("/fulfilled"),
+        state => {
           state.isLoading = false;
-          state.error = payload;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        action =>
+          action.type.startsWith("contacts") &&
+          action.type.endsWith("/rejected"),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
         }
       );
   },

@@ -14,14 +14,14 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, state => {
@@ -32,24 +32,26 @@ const authSlice = createSlice({
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
       .addMatcher(
-        action => action.type.endsWith("/fulfilled"),
+        action =>
+          action.type.startsWith("auth") && action.type.endsWith("/fulfilled"),
         state => {
           state.error = null;
         }
       )
       .addMatcher(
-        action => action.type.endsWith("/rejected"),
-        (state, { payload }) => {
-          state.error = payload;
+        action =>
+          action.type.startsWith("auth") && action.type.endsWith("/rejected"),
+        (state, action) => {
+          state.error = action.payload;
         }
       );
   },

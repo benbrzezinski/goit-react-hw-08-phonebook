@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/actions";
+import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
+import clsx from "clsx";
 import scss from "./RegisterForm.module.scss";
 
 const RegisterForm = () => {
+  const { PasswordIcon, passwordRef, togglePasswordVisibility } =
+    usePasswordVisibility();
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -22,18 +26,19 @@ const RegisterForm = () => {
       <h1 className={scss.formTitle}>Registration</h1>
       <form className={scss.registerForm} onSubmit={handleSubmit}>
         <label className={scss.label}>
-          <span className={scss.inputName}>Name</span>
+          <span className={scss.fieldName}>Name</span>
           <input
             className={scss.input}
             type="text"
             name="name"
+            maxLength={25}
             pattern="^[A-Za-z]+(\s?[A-Za-z]+)*$"
             title="Only letters and spaces are allowed"
             required
           />
         </label>
         <label className={scss.label}>
-          <span className={scss.inputName}>E-mail</span>
+          <span className={scss.fieldName}>E-mail</span>
           <input
             className={scss.input}
             type="email"
@@ -44,17 +49,25 @@ const RegisterForm = () => {
           />
         </label>
         <label className={scss.label}>
-          <span className={scss.inputName}>Password</span>
+          <span className={scss.fieldName}>Password</span>
           <input
-            className={scss.input}
+            className={clsx(scss.input, scss.passwordInput)}
+            ref={passwordRef}
             type="password"
             name="password"
             pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             title="Password must contains at least 8 characters, including one letter and one number"
             required
           />
+          <button
+            className={scss.passwordBtn}
+            type="button"
+            onClick={togglePasswordVisibility}
+          >
+            <PasswordIcon className={scss.passwordIcon} />
+          </button>
         </label>
-        <button className={scss.btn} type="submit">
+        <button className={scss.submitBtn} type="submit">
           Register
         </button>
       </form>

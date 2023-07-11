@@ -6,7 +6,7 @@
   align-items: center;
   padding-inline: 50px;
 
-  @include max-width(500px) {
+  @include max-width(768px) {
     padding-inline: 15px;
   }
 }

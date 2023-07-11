@@ -1,4 +1,4 @@
-@use "../../utils//scss//placeholders//form.scss" as *;
+@use "../../utils/scss/index.scss" as *;
 
 .section {
   margin-bottom: 20px;
@@ -10,6 +10,7 @@
 
 .contactForm {
   @extend %form;
+  margin-bottom: 0;
 }
 
 .label {
@@ -20,10 +21,13 @@
   @extend %input;
 }
 
-.inputName {
-  @extend %inputName;
+.fieldName {
+  @extend %fieldName;
 }
 
-.btn {
+.submitBtn {
   @extend %btn;
+  width: 105px;
+  margin-top: 5px;
+  margin-left: 4px;
 }

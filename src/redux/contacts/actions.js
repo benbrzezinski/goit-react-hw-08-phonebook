@@ -8,8 +8,8 @@ export const getContacts = createAsyncThunk(
       const resp = await axios.get("/contacts");
       return await resp.data;
     } catch (err) {
-      console.error(err.stack);
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
     }
   }
 );
@@ -21,8 +21,8 @@ export const addContact = createAsyncThunk(
       const resp = await axios.post("/contacts", contact);
       return await resp.data;
     } catch (err) {
-      console.error(err.stack);
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
     }
   }
 );
@@ -34,8 +34,8 @@ export const deleteContact = createAsyncThunk(
       const resp = await axios.delete(`/contacts/${id}`);
       return await resp.data;
     } catch (err) {
-      console.error(err.stack);
-      return thunkAPI.rejectWithValue(err.message);
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
     }
   }
 );

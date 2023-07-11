@@ -1,18 +1,14 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectContacts,
-  selectIsLoading,
-} from "../../redux/contacts/selectors";
+import { useDispatch } from "react-redux";
 import { getContacts } from "../../redux/contacts/actions";
 import Filter from "../Filter/Filter";
 import ContactsItem from "../ContactsItem/ContactsItem";
 import Notification from "../Notification/Notification";
+import useContacts from "../../utils/hooks/useContacts";
 import scss from "./ContactsList.module.scss";
 
 const ContactsList = () => {
-  const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectIsLoading);
+  const { contacts, isLoading } = useContacts();
   const dispatch = useDispatch();
 
   useEffect(() => {

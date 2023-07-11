@@ -1,4 +1,4 @@
-@use "../../utils//scss//placeholders//form.scss" as *;
+@use "../../utils/scss/index.scss" as *;
 
 .formTitle {
   @extend %formTitle;
@@ -16,12 +16,27 @@
   @extend %input;
 }
 
-.inputName {
-  @extend %inputName;
+.passwordInput {
+  @extend %passwordInput;
 }
 
-.btn {
+.fieldName {
+  @extend %fieldName;
+}
+
+.submitBtn {
   @extend %btn;
+  width: 105px;
+  margin-top: 5px;
+  margin-left: 4px;
+}
+
+.passwordBtn {
+  @extend %passwordBtn;
+}
+
+.passwordIcon {
+  @extend %passwordIcon;
 }
 
 .formInfo {

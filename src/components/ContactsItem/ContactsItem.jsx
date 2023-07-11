@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import { selectFilteredContacts } from "../../redux/contacts/selectors";
+import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/actions";
+import useContacts from "../../utils/hooks/useContacts";
 import scss from "./ContactsItem.module.scss";
 
 const ContactsItem = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const { filteredContacts } = useContacts();
   const dispatch = useDispatch();
 
   const handleDeleteContact = e => {
@@ -23,7 +23,7 @@ const ContactsItem = () => {
         {number}
       </p>
       <button
-        className={scss.btn}
+        className={scss.deleteBtn}
         type="button"
         data-id={id}
         onClick={handleDeleteContact}
