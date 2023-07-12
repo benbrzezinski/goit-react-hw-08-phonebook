@@ -26,17 +26,21 @@
 
 .submitBtn {
   @extend %btn;
-  width: 105px;
   margin-top: 5px;
   margin-left: 4px;
 }
 
 .passwordBtn {
   @extend %passwordBtn;
+  top: 29px;
 }
 
 .passwordIcon {
   @extend %passwordIcon;
+}
+
+.authPendingIcon {
+  @extend %authPendingIcon;
 }
 
 .formInfo {

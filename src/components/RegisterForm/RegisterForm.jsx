@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/actions";
+import useAuth from "../../utils/hooks/useAuth";
+import useAuthPending from "../../utils/hooks/useAuthPending";
 import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
 import clsx from "clsx";
 import scss from "./RegisterForm.module.scss";
 
 const RegisterForm = () => {
+  const { isAuthPending } = useAuth();
+  const { AuthPendingIcon } = useAuthPending();
   const { PasswordIcon, passwordRef, togglePasswordVisibility } =
     usePasswordVisibility();
   const dispatch = useDispatch();
@@ -18,7 +22,6 @@ const RegisterForm = () => {
     const password = form.elements.password.value;
 
     dispatch(register({ name, email, password }));
-    form.reset();
   };
 
   return (
@@ -68,7 +71,11 @@ const RegisterForm = () => {
           </button>
         </label>
         <button className={scss.submitBtn} type="submit">
-          Register
+          {isAuthPending ? (
+            <AuthPendingIcon className={scss.authPendingIcon} />
+          ) : (
+            "Register"
+          )}
         </button>
       </form>
       <p className={scss.formInfo}>

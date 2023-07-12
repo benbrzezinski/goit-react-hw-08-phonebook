@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   error: null,
   isLoggedIn: false,
+  isPending: false,
   isRefreshing: false,
 };
 
@@ -42,9 +43,17 @@ const authSlice = createSlice({
       })
       .addMatcher(
         action =>
+          action.type.startsWith("auth") && action.type.endsWith("/pending"),
+        state => {
+          state.isPending = true;
+        }
+      )
+      .addMatcher(
+        action =>
           action.type.startsWith("auth") && action.type.endsWith("/fulfilled"),
         state => {
           state.error = null;
+          state.isPending = false;
         }
       )
       .addMatcher(
@@ -52,6 +61,7 @@ const authSlice = createSlice({
           action.type.startsWith("auth") && action.type.endsWith("/rejected"),
         (state, action) => {
           state.error = action.payload;
+          state.isPending = false;
         }
       );
   },

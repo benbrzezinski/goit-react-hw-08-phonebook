@@ -28,7 +28,16 @@
 .logoutBtn {
   @extend %btn;
   width: 26px;
-  display: grid;
-  place-items: center;
-  padding-block: 4px;
+  height: 26px;
+}
+
+.logoutIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.authPendingIcon {
+  @extend %authPendingIcon;
+  width: 18px;
+  height: 18px;
 }

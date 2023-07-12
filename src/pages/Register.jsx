@@ -4,7 +4,7 @@ import RegisterForm from "../components/RegisterForm/RegisterForm";
 const Register = () => (
   <HelmetProvider>
     <Helmet>
-      <title>Registration</title>
+      <title>Registration - Phonebook</title>
     </Helmet>
     <RegisterForm />
   </HelmetProvider>

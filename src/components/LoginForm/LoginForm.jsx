@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/actions";
+import useAuth from "../../utils/hooks/useAuth";
+import useAuthPending from "../../utils/hooks/useAuthPending";
 import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
 import clsx from "clsx";
 import scss from "./LoginForm.module.scss";
 
 const LoginForm = () => {
+  const { isAuthPending } = useAuth();
+  const { AuthPendingIcon } = useAuthPending();
   const { PasswordIcon, passwordRef, togglePasswordVisibility } =
     usePasswordVisibility();
   const dispatch = useDispatch();
@@ -17,7 +21,6 @@ const LoginForm = () => {
     const password = form.elements.password.value;
 
     dispatch(logIn({ email, password }));
-    form.reset();
   };
 
   return (
@@ -55,7 +58,11 @@ const LoginForm = () => {
           </button>
         </label>
         <button className={scss.submitBtn} type="submit">
-          Login
+          {isAuthPending ? (
+            <AuthPendingIcon className={scss.authPendingIcon} />
+          ) : (
+            "Login"
+          )}
         </button>
       </form>
       <p className={scss.formInfo}>

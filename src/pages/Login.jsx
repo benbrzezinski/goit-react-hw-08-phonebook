@@ -4,7 +4,7 @@ import LoginForm from "../components/LoginForm/LoginForm";
 const Login = () => (
   <HelmetProvider>
     <Helmet>
-      <title>Sign In</title>
+      <title>Sign In - Phonebook</title>
     </Helmet>
     <LoginForm />
   </HelmetProvider>
