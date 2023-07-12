@@ -8,7 +8,7 @@ import useContacts from "../../utils/hooks/useContacts";
 import scss from "./ContactsList.module.scss";
 
 const ContactsList = () => {
-  const { contacts, isLoading } = useContacts();
+  const { contacts, isContactsLoading } = useContacts();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ContactsList = () => {
           </ul>
         </>
       )}
-      {!contacts.length && !isLoading && <Notification />}
+      {!contacts.length && !isContactsLoading && <Notification />}
     </section>
   );
 };

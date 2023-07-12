@@ -11,7 +11,7 @@ import scss from "./SharedLayout.module.scss";
 
 const SharedLayout = () => {
   const { authError } = useAuth();
-  const { contactsError, isLoading } = useContacts();
+  const { contactsError, isContactsLoading } = useContacts();
 
   useEffect(() => {
     if (authError) toast.error(authError);
@@ -30,7 +30,7 @@ const SharedLayout = () => {
           </Suspense>
         </div>
       </main>
-      <Loader isLoading={isLoading} />
+      <Loader isLoading={isContactsLoading} />
       <ToastContainer position="top-left" autoClose={3000} theme="colored" />
     </>
   );
