@@ -21,18 +21,18 @@ const RegisterForm = () => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const name = form.elements.name;
+    const username = form.elements.username;
     const email = form.elements.email;
     const password = form.elements.password;
 
-    if (!validateUsername(name.value)) {
-      name.focus();
-      return toast.error("Name validation failed ⚠");
+    if (!validateUsername(username.value)) {
+      username.focus();
+      return toast.error("Username validation failed ⚠");
     }
 
     if (!validateEmail(email.value)) {
       email.focus();
-      return toast.error("Email validation failed ⚠");
+      return toast.error("E-mail validation failed ⚠");
     }
 
     if (!validatePassword(password.value)) {
@@ -42,7 +42,7 @@ const RegisterForm = () => {
 
     dispatch(
       register({
-        name: name.value,
+        name: username.value,
         email: email.value,
         password: password.value,
       })
@@ -54,11 +54,11 @@ const RegisterForm = () => {
       <h1 className={scss.formTitle}>Registration</h1>
       <form className={scss.registerForm} onSubmit={handleSubmit}>
         <label className={scss.label}>
-          <span className={scss.fieldName}>Name</span>
+          <span className={scss.fieldName}>Username</span>
           <input
             className={scss.input}
             type="text"
-            name="name"
+            name="username"
             maxLength={25}
             title="Only letters and spaces are allowed"
             required
@@ -70,7 +70,7 @@ const RegisterForm = () => {
             className={scss.input}
             type="email"
             name="email"
-            title="Enter a valid email address"
+            title="Enter a valid e-mail address"
             required
           />
         </label>
@@ -101,7 +101,7 @@ const RegisterForm = () => {
         </button>
       </form>
       <p className={scss.formInfo}>
-        * name can contains only letters and <span>spaces</span>
+        * username can contains only letters and <span>spaces</span>
       </p>
       <p className={scss.formInfo}>
         * password must contains at least 8 <span>characters</span>, including

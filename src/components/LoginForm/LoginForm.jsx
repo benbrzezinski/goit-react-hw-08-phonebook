@@ -25,7 +25,7 @@ const LoginForm = () => {
 
     if (!validateEmail(email.value)) {
       email.focus();
-      return toast.error("Email validation failed ⚠");
+      return toast.error("E-mail validation failed ⚠");
     }
 
     if (!validatePassword(password.value)) {
@@ -46,7 +46,7 @@ const LoginForm = () => {
             className={scss.input}
             type="email"
             name="email"
-            title="Enter a valid email address"
+            title="Enter a valid e-mail address"
             required
           />
         </label>
