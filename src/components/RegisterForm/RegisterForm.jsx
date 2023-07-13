@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { register } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
 import useAuthPending from "../../utils/hooks/useAuthPending";
 import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
+import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import clsx from "clsx";
 import scss from "./RegisterForm.module.scss";
 
@@ -11,17 +13,40 @@ const RegisterForm = () => {
   const { AuthPendingIcon } = useAuthPending();
   const { PasswordIcon, passwordRef, togglePasswordVisibility } =
     usePasswordVisibility();
+  const { validateUsername, validateEmail, validatePassword } =
+    useValidateInputs();
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const name = form.elements.name.value;
-    const email = form.elements.email.value;
-    const password = form.elements.password.value;
+    const name = form.elements.name;
+    const email = form.elements.email;
+    const password = form.elements.password;
 
-    dispatch(register({ name, email, password }));
+    if (!validateUsername(name.value)) {
+      name.focus();
+      return toast.error("Name validation failed ⚠");
+    }
+
+    if (!validateEmail(email.value)) {
+      email.focus();
+      return toast.error("Email validation failed ⚠");
+    }
+
+    if (!validatePassword(password.value)) {
+      password.focus();
+      return toast.error("Password validation failed ⚠");
+    }
+
+    dispatch(
+      register({
+        name: name.value,
+        email: email.value,
+        password: password.value,
+      })
+    );
   };
 
   return (
@@ -35,7 +60,6 @@ const RegisterForm = () => {
             type="text"
             name="name"
             maxLength={25}
-            pattern="^[A-Za-z]+(\s?[A-Za-z]+)*$"
             title="Only letters and spaces are allowed"
             required
           />
@@ -46,7 +70,6 @@ const RegisterForm = () => {
             className={scss.input}
             type="email"
             name="email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             title="Enter a valid email address"
             required
           />
@@ -58,7 +81,6 @@ const RegisterForm = () => {
             ref={passwordRef}
             type="password"
             name="password"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             title="Password must contains at least 8 characters, including one letter and one number"
             required
           />

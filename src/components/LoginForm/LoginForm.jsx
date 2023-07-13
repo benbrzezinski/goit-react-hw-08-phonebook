@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { logIn } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
 import useAuthPending from "../../utils/hooks/useAuthPending";
 import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
+import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import clsx from "clsx";
 import scss from "./LoginForm.module.scss";
 
@@ -11,16 +13,27 @@ const LoginForm = () => {
   const { AuthPendingIcon } = useAuthPending();
   const { PasswordIcon, passwordRef, togglePasswordVisibility } =
     usePasswordVisibility();
+  const { validateEmail, validatePassword } = useValidateInputs();
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const email = form.elements.email.value;
-    const password = form.elements.password.value;
+    const email = form.elements.email;
+    const password = form.elements.password;
 
-    dispatch(logIn({ email, password }));
+    if (!validateEmail(email.value)) {
+      email.focus();
+      return toast.error("Email validation failed ⚠");
+    }
+
+    if (!validatePassword(password.value)) {
+      password.focus();
+      return toast.error("Password validation failed ⚠");
+    }
+
+    dispatch(logIn({ email: email.value, password: password.value }));
   };
 
   return (
@@ -33,7 +46,6 @@ const LoginForm = () => {
             className={scss.input}
             type="email"
             name="email"
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             title="Enter a valid email address"
             required
           />
@@ -45,7 +57,6 @@ const LoginForm = () => {
             ref={passwordRef}
             type="password"
             name="password"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             title="Password must contains at least 8 characters, including one letter and one number"
             required
           />

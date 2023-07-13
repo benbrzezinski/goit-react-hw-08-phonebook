@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/actions";
 import { toast } from "react-toastify";
+import { addContact } from "../../redux/contacts/actions";
 import useContacts from "../../utils/hooks/useContacts";
+import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import scss from "./AddContactForm.module.scss";
 
 const AddContactForm = () => {
   const [values, setValues] = useState({ name: "", number: "" });
   const { contacts } = useContacts();
+  const { validateName, validateNumber } = useValidateInputs();
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -18,10 +20,24 @@ const AddContactForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    const {
+      elements: { name, number },
+    } = e.currentTarget;
+
     const contactsNames = contacts.map(({ name }) => name);
 
     if (contactsNames.includes(values.name)) {
       return toast.error(`${values.name} is already in contacts ⚠`);
+    }
+
+    if (!validateName(values.name)) {
+      name.focus();
+      return toast.error("Name validation failed ⚠");
+    }
+
+    if (!validateNumber(values.number)) {
+      number.focus();
+      return toast.error("Number validation failed ⚠");
     }
 
     dispatch(addContact(values));
@@ -40,7 +56,6 @@ const AddContactForm = () => {
             name="name"
             value={values.name}
             onChange={handleChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
@@ -53,7 +68,6 @@ const AddContactForm = () => {
             name="number"
             value={values.number}
             onChange={handleChange}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
