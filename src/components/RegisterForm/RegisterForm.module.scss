@@ -1,5 +1,9 @@
 @use "../../utils/scss/index.scss" as *;
 
+.section {
+  @extend %section;
+}
+
 .formTitle {
   @extend %formTitle;
 }

@@ -1,0 +1,13 @@
+@use "../mixins.scss" as *;
+
+%section {
+  display: inline-grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @include max-width(792px) {
+    grid-template-columns: 1fr;
+  }
+}

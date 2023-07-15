@@ -31,7 +31,7 @@ const SharedLayout = () => {
         </div>
       </main>
       <Loader isLoading={isContactsLoading} />
-      <ToastContainer position="top-left" autoClose={3000} theme="colored" />
+      <ToastContainer position="top-center" autoClose={4500} theme="colored" />
     </>
   );
 };

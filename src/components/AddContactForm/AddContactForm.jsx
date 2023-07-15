@@ -27,17 +27,15 @@ const AddContactForm = () => {
     const contactsNames = contacts.map(({ name }) => name);
 
     if (contactsNames.includes(values.name)) {
-      return toast.error(`${values.name} is already in contacts ⚠`);
+      return toast.error(`${values.name} is already in contacts`);
     }
 
-    if (!validateName(values.name)) {
-      name.focus();
-      return toast.error("Name validation failed ⚠");
+    if (validateName(values.name)) {
+      return name.focus();
     }
 
-    if (!validateNumber(values.number)) {
-      number.focus();
-      return toast.error("Number validation failed ⚠");
+    if (validateNumber(values.number)) {
+      return number.focus();
     }
 
     dispatch(addContact(values));
@@ -46,36 +44,48 @@ const AddContactForm = () => {
 
   return (
     <section className={scss.section}>
-      <h1 className={scss.formTitle}>Phonebook</h1>
-      <form className={scss.contactForm} onSubmit={handleSubmit}>
-        <label className={scss.label}>
-          <span className={scss.fieldName}>Name</span>
-          <input
-            className={scss.input}
-            type="text"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </label>
-        <label className={scss.label}>
-          <span className={scss.fieldName}>Number</span>
-          <input
-            className={scss.input}
-            type="tel"
-            name="number"
-            value={values.number}
-            onChange={handleChange}
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <button className={scss.submitBtn} type="submit">
-          Add contact
-        </button>
-      </form>
+      <div>
+        <h1 className={scss.formTitle}>Phonebook</h1>
+        <form className={scss.contactForm} onSubmit={handleSubmit}>
+          <label className={scss.label}>
+            <span className={scss.fieldName}>Name</span>
+            <input
+              className={scss.input}
+              type="text"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+            />
+          </label>
+          <label className={scss.label}>
+            <span className={scss.fieldName}>Number</span>
+            <input
+              className={scss.input}
+              type="tel"
+              name="number"
+              value={values.number}
+              onChange={handleChange}
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+            />
+          </label>
+          <button className={scss.submitBtn} type="submit">
+            Add contact
+          </button>
+        </form>
+      </div>
+      <div>
+        <p className={scss.formInfo}>
+          * name may contain only letters, <span>apostrophe</span>, dash and
+          spaces, but spaces <span>not</span> at the beginning and at the end
+        </p>
+        <p className={scss.formInfo}>
+          * phone number must be digits and can <span>contain</span> spaces,
+          dashes, parentheses and <span>can</span> start with +
+        </p>
+      </div>
     </section>
   );
 };

@@ -1,7 +1,7 @@
 @use "../../utils/scss/index.scss" as *;
 
 .section {
-  margin-bottom: 20px;
+  @extend %section;
 }
 
 .formTitle {
@@ -10,7 +10,6 @@
 
 .contactForm {
   @extend %form;
-  margin-bottom: 0;
 }
 
 .label {
@@ -30,4 +29,8 @@
   width: 105px;
   margin-top: 5px;
   margin-left: 4px;
+}
+
+.formInfo {
+  @extend %formInfo;
 }
