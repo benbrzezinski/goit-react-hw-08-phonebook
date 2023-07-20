@@ -62,7 +62,7 @@ const useValidateInputs = () => {
 
   const validateName = name => {
     const requirements = {
-      format: /^[a-zA-Z]+((['-][a-zA-Z ])?[a-zA-Z]*)*$/.test(name),
+      format: /^[a-zA-Z]+([ '-][a-zA-Z]+)*$/.test(name),
     };
 
     if (!requirements.format) {

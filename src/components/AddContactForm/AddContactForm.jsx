@@ -25,9 +25,23 @@ const AddContactForm = () => {
     } = e.currentTarget;
 
     const contactsNames = contacts.map(({ name }) => name);
+    const contactsNumbers = contacts.map(({ number }) => number);
 
     if (contactsNames.includes(values.name)) {
+      name.focus();
       return toast.error(`${values.name} is already in contacts`);
+    }
+
+    if (contactsNumbers.includes(values.number)) {
+      number.focus();
+
+      const contactNameByNumber = contacts.find(
+        ({ number }) => number === values.number
+      ).name;
+
+      return toast.error(
+        `There is already a contact with the number ${values.number} ↪ ${contactNameByNumber}`
+      );
     }
 
     if (validateName(values.name)) {

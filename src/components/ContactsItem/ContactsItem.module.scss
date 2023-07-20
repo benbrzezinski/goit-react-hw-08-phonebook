@@ -30,6 +30,15 @@
   font-weight: var(--font-weight);
 }
 
+.btnBox {
+  display: flex;
+  gap: 15px;
+}
+
 .deleteBtn {
+  @extend %btn;
+}
+
+.editBtn {
   @extend %btn;
 }

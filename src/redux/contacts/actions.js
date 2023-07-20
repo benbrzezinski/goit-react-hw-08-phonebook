@@ -9,7 +9,7 @@ export const getContacts = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
+      return thunkAPI.rejectWithValue("Error getting contacts ⚠");
     }
   }
 );
@@ -22,7 +22,7 @@ export const addContact = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
+      return thunkAPI.rejectWithValue("Error adding contact ⚠");
     }
   }
 );
@@ -35,7 +35,20 @@ export const deleteContact = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Oops, something went wrong ⚠");
+      return thunkAPI.rejectWithValue("Error deleting contact ⚠");
+    }
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  "contacts/updateContact",
+  async ({ id, credentials }, thunkAPI) => {
+    try {
+      const resp = await axios.patch(`/contacts/${id}`, credentials);
+      return await resp.data;
+    } catch (err) {
+      console.error(err.message);
+      return thunkAPI.rejectWithValue("Error updating contact ⚠");
     }
   }
 );
