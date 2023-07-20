@@ -99,13 +99,15 @@ const RegisterForm = () => {
       </div>
       <div>
         <p className={scss.formInfo}>
-          * username can contain only letters and <span>spaces</span>, but
-          spaces not at the <span>beginning</span> and at the end, the length{" "}
-          <span>must</span> be from 3 to 25 characters
+          * username can contain only letters and{" "}
+          <span>
+            spaces, but spaces not at the beginning and at the end, the length{" "}
+            must be from 3 to 25 characters
+          </span>
         </p>
         <p className={scss.formInfo}>
-          * password must contain at least 8 <span>characters</span>, including
-          one letter and one <span>number</span>
+          * password must contain at least 8{" "}
+          <span>characters, including one letter and one number</span>
         </p>
       </div>
     </section>

@@ -77,8 +77,8 @@ const LoginForm = () => {
       </div>
       <div>
         <p className={scss.formInfo}>
-          * password must contain at least 8 <span>characters</span>, including
-          one letter and one <span>number</span>
+          * password must contain at least 8{" "}
+          <span>characters, including one letter and one number</span>
         </p>
       </div>
     </section>
