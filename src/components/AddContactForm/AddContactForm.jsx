@@ -92,12 +92,15 @@ const AddContactForm = () => {
       </div>
       <div>
         <p className={scss.formInfo}>
-          * name may contain only letters, <span>apostrophe</span>, dash and
-          spaces, but spaces <span>not</span> at the beginning and at the end
+          * name may contain only letters,{" "}
+          <span>
+            apostrophe, dash and spaces, but spaces not at the beginning and at
+            the end
+          </span>
         </p>
         <p className={scss.formInfo}>
-          * phone number must be digits and can <span>contain</span> spaces,
-          dashes, parentheses and <span>can</span> start with +
+          * phone number must be digits and can{" "}
+          <span>contain spaces, dashes, parentheses and can start with +</span>
         </p>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { enableBodyScroll } from "body-scroll-lock";
 import { updateContact } from "../../redux/contacts/actions";
 import { setIsContactEditing } from "../../redux/contacts/slice";
 import useContacts from "../../utils/hooks/useContacts";
@@ -49,18 +48,15 @@ const EditContactForm = ({ editingContactId }) => {
 
     dispatch(updateContact({ id: editingContactId, credentials: values }));
     dispatch(setIsContactEditing(false));
-    enableBodyScroll(document.body);
   };
 
   const cancelEditingOnBtn = () => {
     dispatch(setIsContactEditing(false));
-    enableBodyScroll(document.body);
   };
 
   const cancelEditingOnBackdrop = e => {
     if (e.currentTarget === e.target) {
       dispatch(setIsContactEditing(false));
-      enableBodyScroll(document.body);
     }
   };
 

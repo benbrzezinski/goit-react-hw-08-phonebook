@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { disableBodyScroll } from "body-scroll-lock";
 import { deleteContact } from "../../redux/contacts/actions";
 import { setIsContactEditing } from "../../redux/contacts/slice";
 import EditContactForm from "../EditContactForm/EditContactForm";
@@ -21,7 +20,6 @@ const ContactsItem = () => {
     const id = e.currentTarget.dataset.id;
     setEditingContactId(id);
     dispatch(setIsContactEditing(true));
-    disableBodyScroll(document.body);
   };
 
   return (
