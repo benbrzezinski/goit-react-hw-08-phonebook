@@ -1,8 +1,8 @@
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 import scss from "./Home.module.scss";
 
 const Home = () => (
-  <HelmetProvider>
+  <>
     <Helmet>
       <title>Phonebook</title>
     </Helmet>
@@ -12,7 +12,7 @@ const Home = () => (
         <p>of Your Phonebook ☎</p>
       </h1>
     </div>
-  </HelmetProvider>
+  </>
 );
 
 export default Home;
