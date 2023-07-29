@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { IconContext } from "react-icons";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import { AiOutlinePhone } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { addContact } from "../../redux/contacts/actions";
 import useContacts from "../../utils/hooks/useContacts";
@@ -40,7 +43,7 @@ const AddContactForm = () => {
       ).name;
 
       return toast.error(
-        `There is already a contact with the number ${values.number} ↪ ${contactNameByNumber}`
+        `There is already a contact with the number ${values.number}: ${contactNameByNumber}`
       );
     }
 
@@ -70,8 +73,14 @@ const AddContactForm = () => {
               value={values.name}
               onChange={handleChange}
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              placeholder="John Doe"
               required
             />
+            <button className={scss.iconBtn} type="button">
+              <IconContext.Provider value={{ className: scss.icon }}>
+                <MdDriveFileRenameOutline />
+              </IconContext.Provider>
+            </button>
           </label>
           <label className={scss.label}>
             <span className={scss.fieldName}>Number</span>
@@ -82,8 +91,14 @@ const AddContactForm = () => {
               value={values.number}
               onChange={handleChange}
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              placeholder="+48 777 777 777"
               required
             />
+            <button className={scss.iconBtn} type="button">
+              <IconContext.Provider value={{ className: scss.icon }}>
+                <AiOutlinePhone />
+              </IconContext.Provider>
+            </button>
           </label>
           <button className={scss.submitBtn} type="submit">
             Add contact

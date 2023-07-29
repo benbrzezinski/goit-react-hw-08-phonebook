@@ -27,8 +27,20 @@
 
 .logoutBtn {
   @extend %btn;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
+  border: none;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-bg-sec);
+    background-color: var(--color-text-main);
+  }
+
+  &:active {
+    color: var(--color-bg-sec);
+    background-color: var(--color-text-main);
+  }
 }
 
 .logoutIcon {

@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { IconContext } from "react-icons";
+import { AiOutlineMail } from "react-icons/ai";
 import { logIn } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
 import useAuthPending from "../../utils/hooks/useAuthPending";
@@ -45,13 +48,19 @@ const LoginForm = () => {
               type="email"
               name="email"
               title="Enter a valid e-mail address"
+              placeholder="example@email.com"
               required
             />
+            <button className={clsx(scss.iconBtn, scss.btn)} type="button">
+              <IconContext.Provider value={{ className: scss.icon }}>
+                <AiOutlineMail />
+              </IconContext.Provider>
+            </button>
           </label>
           <label className={scss.label}>
             <span className={scss.fieldName}>Password</span>
             <input
-              className={clsx(scss.input, scss.passwordInput)}
+              className={scss.input}
               ref={passwordRef}
               type="password"
               name="password"
@@ -59,11 +68,11 @@ const LoginForm = () => {
               required
             />
             <button
-              className={scss.passwordBtn}
+              className={scss.iconBtn}
               type="button"
               onClick={togglePasswordVisibility}
             >
-              <PasswordIcon className={scss.passwordIcon} />
+              <PasswordIcon className={scss.icon} />
             </button>
           </label>
           <button className={scss.submitBtn} type="submit">
@@ -73,6 +82,9 @@ const LoginForm = () => {
               "Login"
             )}
           </button>
+          <Link to="/register" className={scss.formLink}>
+            You don&#39;t have an account? Create here
+          </Link>
         </form>
       </div>
       <div>

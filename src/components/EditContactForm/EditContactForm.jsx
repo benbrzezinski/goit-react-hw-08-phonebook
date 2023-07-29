@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { IconContext } from "react-icons";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import { AiOutlinePhone } from "react-icons/ai";
 import { updateContact } from "../../redux/contacts/actions";
 import { setIsContactEditing } from "../../redux/contacts/slice";
 import useContacts from "../../utils/hooks/useContacts";
@@ -77,6 +80,11 @@ const EditContactForm = ({ editingContactId }) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
+          <button className={scss.iconBtn} type="button">
+            <IconContext.Provider value={{ className: scss.icon }}>
+              <MdDriveFileRenameOutline />
+            </IconContext.Provider>
+          </button>
         </label>
         <label className={scss.label}>
           <span className={scss.fieldName}>Number</span>
@@ -89,6 +97,11 @@ const EditContactForm = ({ editingContactId }) => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
+          <button className={scss.iconBtn} type="button">
+            <IconContext.Provider value={{ className: scss.icon }}>
+              <AiOutlinePhone />
+            </IconContext.Provider>
+          </button>
         </label>
         <div className={scss.btnBox}>
           <button

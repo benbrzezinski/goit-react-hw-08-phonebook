@@ -19,6 +19,18 @@
 
 .editContactForm {
   @extend %form;
+  background-color: var(--color-bg-third);
+  border: none;
+  padding: 30px;
+
+  @include max-width(974px) {
+    width: 60%;
+  }
+
+  @include max-width(585px) {
+    width: 300px;
+    padding: 20px;
+  }
 }
 
 .label {
@@ -27,6 +39,10 @@
 
 .input {
   @extend %input;
+
+  @include max-width(585px) {
+    width: 250px;
+  }
 }
 
 .fieldName {
@@ -35,9 +51,10 @@
 
 .btnBox {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 15px;
-  margin-top: 5px;
-  margin-left: 4px;
+  margin-top: 15px;
 }
 
 .cancelBtn {
@@ -46,4 +63,17 @@
 
 .submitBtn {
   @extend %btn;
+}
+
+.iconBtn {
+  @extend %iconBtn;
+  cursor: default;
+
+  @include max-width(585px) {
+    left: 214px;
+  }
+}
+
+.icon {
+  @extend %icon;
 }

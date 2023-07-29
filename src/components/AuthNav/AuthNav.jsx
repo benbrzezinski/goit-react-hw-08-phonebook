@@ -21,7 +21,7 @@ const AuthNav = () => (
           clsx(scss.authNavLink, { [scss.isActive]: isActive })
         }
       >
-        Login
+        LogIn
       </NavLink>
     </li>
   </ul>

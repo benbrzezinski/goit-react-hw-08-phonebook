@@ -13,7 +13,7 @@ const useAuthPending = () => {
     className: PropTypes.string.isRequired,
   };
 
-  return { IconContext, AuthPendingIcon };
+  return { AuthPendingIcon };
 };
 
 export default useAuthPending;

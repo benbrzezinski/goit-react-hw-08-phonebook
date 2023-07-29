@@ -8,13 +8,7 @@
   row-gap: 5px;
   border: 2px dashed var(--color-bg-sec);
   border-radius: var(--border-radius);
-  padding: 10px;
-
-  @include max-width(400px) {
-    &:not(:last-child) {
-      margin-bottom: 30px;
-    }
-  }
+  padding: 15px;
 }
 
 .text {
@@ -37,8 +31,12 @@
 
 .deleteBtn {
   @extend %btn;
+  width: 108px;
+  height: 34px;
 }
 
 .editBtn {
   @extend %btn;
+  width: 108px;
+  height: 34px;
 }

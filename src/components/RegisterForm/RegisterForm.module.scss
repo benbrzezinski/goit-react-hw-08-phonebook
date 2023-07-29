@@ -20,30 +20,33 @@
   @extend %input;
 }
 
-.passwordInput {
-  @extend %passwordInput;
-}
-
 .fieldName {
   @extend %fieldName;
 }
 
 .submitBtn {
   @extend %btn;
-  margin-top: 5px;
-  margin-left: 4px;
+  margin-top: 10px;
 }
 
-.passwordBtn {
-  @extend %passwordBtn;
+.btn {
+  cursor: default;
 }
 
-.passwordIcon {
-  @extend %passwordIcon;
+.iconBtn {
+  @extend %iconBtn;
+}
+
+.icon {
+  @extend %icon;
 }
 
 .authPendingIcon {
   @extend %authPendingIcon;
+}
+
+.formLink {
+  @extend %formLink;
 }
 
 .formInfo {

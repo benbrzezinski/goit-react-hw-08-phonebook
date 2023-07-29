@@ -16,7 +16,7 @@ const ContactsList = () => {
   }, [dispatch]);
 
   return (
-    <section>
+    <section className={scss.wrapper}>
       <h2 className={scss.title}>Contacts</h2>
       {contacts.length > 0 && (
         <>

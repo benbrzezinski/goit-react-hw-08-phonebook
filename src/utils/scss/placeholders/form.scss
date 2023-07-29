@@ -1,22 +1,26 @@
 @use "../mixins.scss" as *;
 
 %formTitle {
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 32px;
+  text-align: center;
+  text-shadow: 4px 4px 6px #aaa4a4;
+  margin-bottom: 30px;
 }
 
 %form {
-  width: 370px;
-  background-color: var(--color-bg-sec);
+  width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  padding: 15px;
+  padding: 20px;
 
-  @include max-width(470px) {
+  @include max-width(974px) {
     width: 300px;
+    border: none;
+    padding: 10px;
   }
 }
 
@@ -25,19 +29,34 @@
   flex-direction: column;
   gap: 5px;
   position: relative;
+  transition-property: color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-bg-sec);
+  }
 }
 
 %input {
-  width: 200px;
+  width: 280px;
   background-color: var(--color-bg-third);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  padding: 5px;
-  padding-left: 8px;
-}
+  transition-property: border-color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
+  padding: 7px 50px 7px 12px;
 
-%passwordInput {
-  padding-right: 35px;
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-bg-sec);
+  }
+
+  @include max-width(400px) {
+    width: 250px;
+  }
 }
 
 %fieldName {
@@ -45,27 +64,45 @@
   margin-left: 4px;
 }
 
-%passwordBtn {
+%iconBtn {
   width: 20px;
   height: 20px;
   background-color: transparent;
   border: none;
   position: absolute;
-  top: 30px;
-  left: 172px;
+  top: 32px;
+  left: 242px;
+
+  @include max-width(400px) {
+    left: 214px;
+  }
 }
 
-%passwordIcon {
+%icon {
   width: 20px;
   height: 20px;
   color: var(--color-text-main);
 }
 
 %authPendingIcon {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   animation: spin 800ms linear infinite;
   @include animation-spin;
+}
+
+%formLink {
+  color: var(--color-bg-sec);
+  margin-top: 5px;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+
+  @include max-width(400px) {
+    font-size: var(--font-size-sec);
+  }
 }
 
 %formInfo {

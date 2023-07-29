@@ -2,6 +2,11 @@
 
 .section {
   @extend %section;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .formTitle {
@@ -26,9 +31,16 @@
 
 .submitBtn {
   @extend %btn;
-  width: 105px;
-  margin-top: 5px;
-  margin-left: 4px;
+  margin-top: 10px;
+}
+
+.iconBtn {
+  @extend %iconBtn;
+  cursor: default;
+}
+
+.icon {
+  @extend %icon;
 }
 
 .formInfo {

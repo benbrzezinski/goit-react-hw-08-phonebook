@@ -1,15 +1,21 @@
 .filter {
-  width: 200px;
+  width: 250px;
   background-color: var(--color-bg-third);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  padding: 5px;
-  padding-left: 8px;
-  margin-bottom: 25px;
+  transition-property: border-color;
+  transition-duration: var(--duration);
+  transition-timing-function: var(--timing-function);
+  padding: 7px 12px 7px 12px;
+  margin-bottom: 30px;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-bg-sec);
+  }
 }
 
 .text {
   font-weight: var(--font-weight);
-  padding-left: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }

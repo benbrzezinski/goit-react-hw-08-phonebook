@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { IconContext } from "react-icons";
+import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { register } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
 import useAuthPending from "../../utils/hooks/useAuthPending";
@@ -57,8 +60,14 @@ const RegisterForm = () => {
               type="text"
               name="username"
               title="Only letters and spaces are allowed"
+              placeholder="John Doe"
               required
             />
+            <button className={clsx(scss.iconBtn, scss.btn)} type="button">
+              <IconContext.Provider value={{ className: scss.icon }}>
+                <AiOutlineUser />
+              </IconContext.Provider>
+            </button>
           </label>
           <label className={scss.label}>
             <span className={scss.fieldName}>E-mail</span>
@@ -67,13 +76,19 @@ const RegisterForm = () => {
               type="email"
               name="email"
               title="Enter a valid e-mail address"
+              placeholder="example@email.com"
               required
             />
+            <button className={clsx(scss.iconBtn, scss.btn)} type="button">
+              <IconContext.Provider value={{ className: scss.icon }}>
+                <AiOutlineMail />
+              </IconContext.Provider>
+            </button>
           </label>
           <label className={scss.label}>
             <span className={scss.fieldName}>Password</span>
             <input
-              className={clsx(scss.input, scss.passwordInput)}
+              className={scss.input}
               ref={passwordRef}
               type="password"
               name="password"
@@ -81,11 +96,11 @@ const RegisterForm = () => {
               required
             />
             <button
-              className={scss.passwordBtn}
+              className={scss.iconBtn}
               type="button"
               onClick={togglePasswordVisibility}
             >
-              <PasswordIcon className={scss.passwordIcon} />
+              <PasswordIcon className={scss.icon} />
             </button>
           </label>
           <button className={scss.submitBtn} type="submit">
@@ -95,6 +110,9 @@ const RegisterForm = () => {
               "Register"
             )}
           </button>
+          <Link to="/login" className={scss.formLink}>
+            Already have an account? Sign in here
+          </Link>
         </form>
       </div>
       <div>
