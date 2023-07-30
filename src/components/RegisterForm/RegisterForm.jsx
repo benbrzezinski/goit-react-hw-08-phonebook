@@ -115,7 +115,7 @@ const RegisterForm = () => {
         {readMore ? "Validation requirements <<" : "Validation requirements >>"}
       </button>
       {readMore ? (
-        <div>
+        <div className={scss.formInfoBox}>
           <p className={scss.formInfo}>
             * username can contain only letters and{" "}
             <span>

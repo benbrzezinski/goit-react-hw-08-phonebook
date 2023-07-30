@@ -24,7 +24,7 @@ const Home = () => {
       <div className={scss.box}>
         <h1 className={scss.title}>
           <p>Unlock the Power</p>
-          <p>of Your Phonebook</p>
+          <p>of Your Phonebook ☎</p>
         </h1>
         <div className={scss.linkBox}>
           {isLoggedIn ? (

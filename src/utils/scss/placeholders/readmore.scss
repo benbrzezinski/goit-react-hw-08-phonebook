@@ -1,7 +1,10 @@
 %readMore {
+  font-size: 18px;
   color: var(--color-bg-sec);
+  background-color: transparent;
   text-align: start;
   border: none;
+  padding-left: 10px;
 
   &:hover,
   &:focus-visible {

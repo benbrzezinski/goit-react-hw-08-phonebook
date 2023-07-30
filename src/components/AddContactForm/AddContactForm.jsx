@@ -106,7 +106,7 @@ const AddContactForm = () => {
         {readMore ? "Validation requirements <<" : "Validation requirements >>"}
       </button>
       {readMore ? (
-        <div>
+        <div className={scss.formInfoBox}>
           <p className={scss.formInfo}>
             * name may contain only letters,{" "}
             <span>

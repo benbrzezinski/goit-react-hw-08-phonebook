@@ -89,7 +89,7 @@ const LoginForm = () => {
         {readMore ? "Validation requirements <<" : "Validation requirements >>"}
       </button>
       {readMore ? (
-        <div>
+        <div className={scss.formInfoBox}>
           <p className={scss.formInfo}>
             * password must contain at least 8{" "}
             <span>characters, including one letter and one number</span>

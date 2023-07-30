@@ -53,6 +53,10 @@
   @extend %readMore;
 }
 
+.formInfoBox {
+  @extend %formInfoBox;
+}
+
 .formInfo {
   @extend %formInfo;
 }
