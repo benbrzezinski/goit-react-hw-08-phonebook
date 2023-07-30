@@ -1,0 +1,10 @@
+%readMore {
+  color: var(--color-bg-sec);
+  text-align: start;
+  border: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}

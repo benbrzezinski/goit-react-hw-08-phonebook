@@ -49,6 +49,10 @@
   @extend %formLink;
 }
 
+.readMore {
+  @extend %readMore;
+}
+
 .formInfo {
   @extend %formInfo;
 }

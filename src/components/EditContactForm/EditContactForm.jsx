@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { IconContext } from "react-icons";
-import { MdDriveFileRenameOutline } from "react-icons/md";
-import { AiOutlinePhone } from "react-icons/ai";
 import { updateContact } from "../../redux/contacts/actions";
 import { setIsContactEditing } from "../../redux/contacts/slice";
 import useContacts from "../../utils/hooks/useContacts";
+import useIcons from "../../utils/hooks/useIcons";
 import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import clsx from "clsx";
 import scss from "./EditContactForm.module.scss";
@@ -14,6 +12,7 @@ import scss from "./EditContactForm.module.scss";
 const EditContactForm = ({ editingContactId }) => {
   const [values, setValues] = useState({ name: "", number: "" });
   const { contacts, isContactEditing } = useContacts();
+  const { NameIcon, PhoneIcon } = useIcons();
   const { validateName, validateNumber } = useValidateInputs();
   const dispatch = useDispatch();
 
@@ -81,9 +80,7 @@ const EditContactForm = ({ editingContactId }) => {
             required
           />
           <button className={scss.iconBtn} type="button">
-            <IconContext.Provider value={{ className: scss.icon }}>
-              <MdDriveFileRenameOutline />
-            </IconContext.Provider>
+            <NameIcon className={scss.icon} />
           </button>
         </label>
         <label className={scss.label}>
@@ -98,9 +95,7 @@ const EditContactForm = ({ editingContactId }) => {
             required
           />
           <button className={scss.iconBtn} type="button">
-            <IconContext.Provider value={{ className: scss.icon }}>
-              <AiOutlinePhone />
-            </IconContext.Provider>
+            <PhoneIcon className={scss.icon} />
           </button>
         </label>
         <div className={scss.btnBox}>

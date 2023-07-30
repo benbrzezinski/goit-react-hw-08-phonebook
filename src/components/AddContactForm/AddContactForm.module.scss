@@ -2,10 +2,6 @@
 
 .section {
   @extend %section;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   margin-bottom: 30px;
 }
 
@@ -41,6 +37,10 @@
 
 .icon {
   @extend %icon;
+}
+
+.readMore {
+  @extend %readMore;
 }
 
 .formInfo {

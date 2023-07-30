@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { IconContext } from "react-icons";
-import { AiOutlineMail } from "react-icons/ai";
 import { logIn } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
-import useAuthPending from "../../utils/hooks/useAuthPending";
+import useIcons from "../../utils/hooks/useIcons";
 import usePasswordVisibility from "../../utils/hooks/usePasswordVisibility";
+import useReadMore from "../../utils/hooks/useReadMore";
 import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import clsx from "clsx";
 import scss from "./LoginForm.module.scss";
 
 const LoginForm = () => {
   const { isAuthPending } = useAuth();
-  const { AuthPendingIcon } = useAuthPending();
+  const { AuthPendingIcon, EmailIcon } = useIcons();
   const { PasswordIcon, passwordRef, togglePasswordVisibility } =
     usePasswordVisibility();
+  const { readMore, toggleReadMore } = useReadMore();
   const { validateEmail, validatePassword } = useValidateInputs();
   const dispatch = useDispatch();
 
@@ -52,9 +52,7 @@ const LoginForm = () => {
               required
             />
             <button className={clsx(scss.iconBtn, scss.btn)} type="button">
-              <IconContext.Provider value={{ className: scss.icon }}>
-                <AiOutlineMail />
-              </IconContext.Provider>
+              <EmailIcon className={scss.icon} />
             </button>
           </label>
           <label className={scss.label}>
@@ -87,12 +85,17 @@ const LoginForm = () => {
           </Link>
         </form>
       </div>
-      <div>
-        <p className={scss.formInfo}>
-          * password must contain at least 8{" "}
-          <span>characters, including one letter and one number</span>
-        </p>
-      </div>
+      <button className={scss.readMore} type="button" onClick={toggleReadMore}>
+        {readMore ? "Validation requirements <<" : "Validation requirements >>"}
+      </button>
+      {readMore ? (
+        <div>
+          <p className={scss.formInfo}>
+            * password must contain at least 8{" "}
+            <span>characters, including one letter and one number</span>
+          </p>
+        </div>
+      ) : null}
     </section>
   );
 };

@@ -9,7 +9,7 @@ export const getContacts = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Error getting contacts ⚠");
+      return thunkAPI.rejectWithValue("Error getting contacts");
     }
   }
 );
@@ -22,7 +22,7 @@ export const addContact = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Error adding contact ⚠");
+      return thunkAPI.rejectWithValue("Error adding contact");
     }
   }
 );
@@ -35,7 +35,7 @@ export const deleteContact = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Error deleting contact ⚠");
+      return thunkAPI.rejectWithValue("Error deleting contact");
     }
   }
 );
@@ -48,7 +48,7 @@ export const updateContact = createAsyncThunk(
       return await resp.data;
     } catch (err) {
       console.error(err.message);
-      return thunkAPI.rejectWithValue("Error updating contact ⚠");
+      return thunkAPI.rejectWithValue("Error updating contact");
     }
   }
 );

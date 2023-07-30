@@ -100,7 +100,7 @@
     text-decoration: underline;
   }
 
-  @include max-width(400px) {
+  @include max-width(974px) {
     font-size: var(--font-size-sec);
   }
 }

@@ -1,14 +1,12 @@
 import { useDispatch } from "react-redux";
-import { IconContext } from "react-icons";
-import { LuLogOut } from "react-icons/lu";
 import { logOut } from "../../redux/auth/actions";
 import useAuth from "../../utils/hooks/useAuth";
-import useAuthPending from "../../utils/hooks/useAuthPending";
+import useIcons from "../../utils/hooks/useIcons";
 import scss from "./UserMenu.module.scss";
 
 const UserMenu = () => {
   const { user, isAuthPending } = useAuth();
-  const { AuthPendingIcon } = useAuthPending();
+  const { AuthPendingIcon, LogOutIcon } = useIcons();
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
@@ -22,9 +20,7 @@ const UserMenu = () => {
         {isAuthPending ? (
           <AuthPendingIcon className={scss.authPendingIcon} />
         ) : (
-          <IconContext.Provider value={{ className: scss.logoutIcon }}>
-            <LuLogOut />
-          </IconContext.Provider>
+          <LogOutIcon className={scss.logoutIcon} />
         )}
       </button>
     </div>

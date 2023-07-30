@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { IconContext } from "react-icons";
-import { MdDriveFileRenameOutline } from "react-icons/md";
-import { AiOutlinePhone } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { addContact } from "../../redux/contacts/actions";
 import useContacts from "../../utils/hooks/useContacts";
+import useIcons from "../../utils/hooks/useIcons";
+import useReadMore from "../../utils/hooks/useReadMore";
 import useValidateInputs from "../../utils/hooks/useValidateInputs";
 import scss from "./AddContactForm.module.scss";
 
 const AddContactForm = () => {
   const [values, setValues] = useState({ name: "", number: "" });
   const { contacts } = useContacts();
+  const { NameIcon, PhoneIcon } = useIcons();
+  const { readMore, toggleReadMore } = useReadMore();
   const { validateName, validateNumber } = useValidateInputs();
   const dispatch = useDispatch();
 
@@ -77,9 +78,7 @@ const AddContactForm = () => {
               required
             />
             <button className={scss.iconBtn} type="button">
-              <IconContext.Provider value={{ className: scss.icon }}>
-                <MdDriveFileRenameOutline />
-              </IconContext.Provider>
+              <NameIcon className={scss.icon} />
             </button>
           </label>
           <label className={scss.label}>
@@ -95,9 +94,7 @@ const AddContactForm = () => {
               required
             />
             <button className={scss.iconBtn} type="button">
-              <IconContext.Provider value={{ className: scss.icon }}>
-                <AiOutlinePhone />
-              </IconContext.Provider>
+              <PhoneIcon className={scss.icon} />
             </button>
           </label>
           <button className={scss.submitBtn} type="submit">
@@ -105,19 +102,26 @@ const AddContactForm = () => {
           </button>
         </form>
       </div>
-      <div>
-        <p className={scss.formInfo}>
-          * name may contain only letters,{" "}
-          <span>
-            apostrophe, dash and spaces, but spaces not at the beginning and at
-            the end
-          </span>
-        </p>
-        <p className={scss.formInfo}>
-          * phone number must be digits and can{" "}
-          <span>contain spaces, dashes, parentheses and can start with +</span>
-        </p>
-      </div>
+      <button className={scss.readMore} type="button" onClick={toggleReadMore}>
+        {readMore ? "Validation requirements <<" : "Validation requirements >>"}
+      </button>
+      {readMore ? (
+        <div>
+          <p className={scss.formInfo}>
+            * name may contain only letters,{" "}
+            <span>
+              apostrophe, dash and spaces, but spaces not at the beginning and
+              at the end
+            </span>
+          </p>
+          <p className={scss.formInfo}>
+            * phone number must be digits and can{" "}
+            <span>
+              contain spaces, dashes, parentheses and can start with +
+            </span>
+          </p>
+        </div>
+      ) : null}
     </section>
   );
 };
