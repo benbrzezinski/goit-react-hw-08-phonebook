@@ -60,7 +60,7 @@ const RegisterForm = () => {
               type="text"
               name="username"
               title="Only letters and spaces are allowed"
-              placeholder="John Doe"
+              placeholder="Emily Johnson"
               required
             />
             <button className={clsx(scss.iconBtn, scss.btn)} type="button">

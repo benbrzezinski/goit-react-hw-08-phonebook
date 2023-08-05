@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../utils/hooks/useAuth";
 import useContacts from "../../utils/hooks/useContacts";
 import NavigationBar from "../NavigationBar/NavigationBar";
+import CopyrightFooter from "../CopyrightFooter/CopyrightFooter";
 import Loader from "../Loader/Loader";
 import scss from "./SharedLayout.module.scss";
 
@@ -30,6 +31,9 @@ const SharedLayout = () => {
           </Suspense>
         </div>
       </main>
+      <footer className={scss.footer}>
+        <CopyrightFooter />
+      </footer>
       <Loader isLoading={isContactsLoading} />
       <ToastContainer position="top-center" autoClose={6000} theme="light" />
     </>

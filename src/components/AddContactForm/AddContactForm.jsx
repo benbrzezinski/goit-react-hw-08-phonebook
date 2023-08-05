@@ -74,7 +74,7 @@ const AddContactForm = () => {
               value={values.name}
               onChange={handleChange}
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              placeholder="John Doe"
+              placeholder="Emily Johnson"
               required
             />
             <button className={scss.iconBtn} type="button">

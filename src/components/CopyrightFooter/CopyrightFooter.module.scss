@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.text {
+  font-size: var(--font-size-sec);
+  color: var(--color-text-sec);
+}
+
+.link {
+  color: var(--color-bg-sec);
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
