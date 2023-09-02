@@ -9,7 +9,7 @@ const Loader = ({ isLoading = true }) => (
     width="100"
     ariaLabel="watch-loading"
     wrapperClass={scss.loader}
-    color="#822ab4"
+    color="#6515af"
   />
 );
 
