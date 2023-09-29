@@ -40,6 +40,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.isPending = false;
       })
       .addMatcher(
         action =>
@@ -58,7 +59,9 @@ const authSlice = createSlice({
       )
       .addMatcher(
         action =>
-          action.type.startsWith("auth") && action.type.endsWith("/rejected"),
+          action.type.startsWith("auth") &&
+          action.type.endsWith("/rejected") &&
+          !action.type.startsWith("auth/refreshUser"),
         (state, action) => {
           state.error = action.payload;
           state.isPending = false;
